@@ -1,0 +1,15 @@
+#TEST PARAMETERS PLEASE IGNORE
+$inputFrom = "characters"
+$inputId = "95465499"
+$RequestedValue = "name"
+
+
+$SelectedEsiForm = "https://esi.tech.ccp.is/latest/" + "$inputFrom" + "/" + "$inputID" + "/?datasource=tranquility"
+#Combines the desired type of information requested with the relevant ID
+
+$WebRequest = Invoke-WebRequest $SelectedEsiForm -Headers @{"accept" = "application/json"} -Method GET
+#^ Sends Web Request
+$webRequestParsed = ConvertFrom-Json $WebRequest
+
+Select-Object -Property $RequestedValue -InputObject $webRequestParsed
+#^Parses webrequest's Content, converts it from JSON, writes it to output.
