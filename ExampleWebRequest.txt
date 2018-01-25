@@ -1,0 +1,4 @@
+#Example Powershell for Invoke-Webrequest to query Eve's ESI
+
+#Invoke-WebRequest https://esi.tech.ccp.is/latest/characters/95465499/?datasource=tranquility -Headers @{"accept" = "application/json"} -Method GET
+#GETS Character Info from the ESI point, character ID 95465499, datasource tranquility, endpoint characters
