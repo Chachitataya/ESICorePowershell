@@ -1,6 +1,7 @@
 #TEST PARAMETERS PLEASE IGNORE
 $inputFrom = "characters"
 $inputId = "95465499"
+#CCP Bartender's ID is 95465499
 $RequestedValue = "name"
 
 
