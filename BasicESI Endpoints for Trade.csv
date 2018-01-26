@@ -1,0 +1,7 @@
+BASIC ENDPOINTS,Function,,,
+/characters/{character_id}/orders/,Char’s orders,,,
+/characters/{character_id}/orders/history/,Char order hist,,,
+/markets/{region_id}/history/,Show order history,,,
+/markets/{region_id}/orders/,Show Region Orders,https://esi.tech.ccp.is/latest/markets/10000003/orders/?datasource=tranquility&order_type=buy&page=1 ,"*Shows all order info, including price",
+/markets/{region_id}/types/,List of Item Types in region,https://esi.tech.ccp.is/latest/markets/120120/types/?datasource=tranquility ,,
+/route/{origin}/{destination}/,Route ,https://esi.tech.ccp.is/latest/route/30000142/30002187/?flag=secure,*Dodixie to Jita,*Returns list of systems in the way – return a count on this to get jumps. 
