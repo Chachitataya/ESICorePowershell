@@ -1,0 +1,5 @@
+<#
+To Come: Basic Mineral Price Finder
+Shortterm - Hardcode basic minerals so that the script finds basic mineral buy and sell prices across several regions. 
+Midterm - Compare buy/sell prices, calculate the profit, and return possible traderoutes
+#>
