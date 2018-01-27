@@ -1,0 +1,25 @@
+$IsogenID = 'Isogen'
+$MegacyteID = 'Megacyte'
+$MexallonID = 'Mexallon'
+$MorphiteID = 'Morphite'
+$NocxiumID = 'Nocxium'
+$PyeriteID = 'Pyerite'
+$TritaniumID = 'Tritanium'
+$ZydrineID = 'Zydrine'
+
+$mineralArray = $IsogenID,$MegacyteID,$MexallonID,$MorphiteID,$NocxiumID,$PyeriteID,$TritaniumID,$ZydrineID
+
+for($i = $mineralArray.GetLowerBound(0); $i -le $mineralArray.GetUpperBound(0); $i++) {
+	$SelectedEsiForm ='https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=' + $mineralArray[$i] + '&strict=true'
+	$itemID = Invoke-WebRequest $SelectedEsiForm -Headers @{"accept" = "application/json"} -method GET
+	$itemID1 = (Convertfrom-JSON $itemID | OUT-STRING)
+	$Silencer = $itemID1 -match '\{[0-9]+\}'
+	$ConsolidationVariable = $mineralArray[$i] + ' has an item ID of ' + $matches[0].Trim("{","}")
+	write-output $ConsolidationVariable
+  write-output $Silencer
+  }
+
+<#
+Iterates through each of the items. Gets the item ID.
+WebRequest URL is https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=isogen&strict=true
+#>
