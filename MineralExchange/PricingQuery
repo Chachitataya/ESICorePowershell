@@ -1,0 +1,68 @@
+#This is/(will be) a script for inter-regional mineral trading. 
+<#First we need to get our mineral prices. The basic minerals (plus the tech ii / tech 2 mineral) are Isogen Megacyte Mexallon Morphite Nocxium Pyerite Tritanium Zydrine
+Corresponding IDs are as follows
+ Isogen
+ Megacyte 
+ Mexallon 
+ Morphite 
+ Nocxium
+ Pyerite 
+ Tritanium 
+ Zydrine
+
+IDs found by using the endpoint for finding item IDs: ID search = 
+WebRequest URL is https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=isogen&strict=true #>
+#Just thought of a better way to do this, disregard these declared variables... for now. 
+$IsogenID = 'Isogen'
+$MegacyteID = 'Megacyte'
+$MexallonID = 'Mexallon'
+$MorphiteID = 'Morphite'
+$NocxiumID = 'Nocxium'
+$PyeriteID = 'Pyerite'
+$TritaniumID = 'Tritanium'
+$ZydrineID = 'Zydrine'
+
+$mineralArray = $IsogenID,$MegacyteID,$MexallonID,$MorphiteID,$NocxiumID,$PyeriteID,$TritaniumID,$ZydrineID
+write-host $mineralArray
+
+for($i = $mineralArray.GetLowerBound(0); $i -le $mineralArray.GetUpperBound(0); $i++) {
+$SelectedEsiForm = 'https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=' + $mineralArray[$i] + '&strict=true'
+$itemID = Invoke-WebRequest $SelectedEsiForm -Headers @{"accept" = "application/json"} -method GET
+$itemID1 = Convertfrom-JSON $itemID
+$itemID2 = Select-Object -Property inventory_type -InputObject $itemID
+write-host $mineralArray[$i] = [$itemID1]
+}
+
+<#Iterates through each of the items. Gets the item ID. 
+WebRequest URL is https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=isogen&strict=true
+#>
+
+$WebRequest = Invoke-WebRequest $SelectedEsiForm -Headers @{"accept" = "application/json"} -Method GET
+
+
+-------------------
+
+TEST CHUNK HERE
+
+$IsogenID = 'Isogen'
+>> $MegacyteID = 'Megacyte'
+>> $MexallonID = 'Mexallon'
+>> $MorphiteID = 'Morphite'
+>> $NocxiumID = 'Nocxium'
+>> $PyeriteID = 'Pyerite'
+>> $TritaniumID = 'Tritanium'
+>> $ZydrineID = 'Zydrine'
+>>
+>> $mineralArray = $IsogenID,$MegacyteID,$MexallonID,$MorphiteID,$NocxiumID,$PyeriteID,$TritaniumID,$ZydrineID
+>>
+>> for($i = $mineralArray.GetLowerBound(0); $i -le $mineralArray.GetUpperBound(0); $i++) {
+>> $SelectedEsiForm = 'https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=' + $mineralArray[$i] + '&strict=true'
+>> $itemID = Invoke-WebRequest $SelectedEsiForm -Headers @{"accept" = "application/json"} -method GET
+>> $itemID1 = (Convertfrom-JSON $itemID | select inventory_type | Out-String)
+>> write-output $mineralArray[$i] + 'has an item ID of' + $itemID1
+>> }
+>>
+>> <#Iterates through each of the items. Gets the item ID.
+>> WebRequest URL is https://esi.tech.ccp.is/latest/search/?categories=inventory_type&datasource=tranquility&language=en-us&search=isogen&strict=true
+>> #>
+
