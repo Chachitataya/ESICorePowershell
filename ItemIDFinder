@@ -16,7 +16,6 @@ for($i = $mineralArray.GetLowerBound(0); $i -le $mineralArray.GetUpperBound(0); 
 	$Silencer = $itemID1 -match '\{[0-9]+\}'
 	$ConsolidationVariable = $mineralArray[$i] + ' has an item ID of ' + $matches[0].Trim("{","}")
 	write-output $ConsolidationVariable
-  write-output $Silencer
   }
 
 <#
